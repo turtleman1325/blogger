@@ -1,0 +1,5 @@
+<% @post.each do |post| %>
+<p><%= link_to post.title, "/posts/#{post.id}" %><%= button_to 'X', "/posts/#{post.id}", method: 'delete' %><p>
+
+<% end %>
+<%= link_to 'New Post', 'posts/new' %>
