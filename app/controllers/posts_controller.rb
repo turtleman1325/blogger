@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new params[:post]
     if @post.save
+      @post.category_ids = params[:categories]
       redirect_to '/posts'
     else
       render 'new'
@@ -36,6 +37,8 @@ class PostsController < ApplicationController
   def update
     @post = Post.find params[:id]
     if @post.update params[:post]
+      @post.category_ids = params[:categories]
+
       redirect_to "/posts"
     else
       render 'edit'

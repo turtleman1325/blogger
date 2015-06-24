@@ -1,0 +1,4 @@
+<br/><% Category.all.each do |category| %>
+    <label><%= category.name %><%= check_box_tag category.name, category.id, @post.categories.include?(category), name:
+                                                                      'categories[]' %></label><br/><br/>
+ <% end %>

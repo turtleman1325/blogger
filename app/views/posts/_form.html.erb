@@ -1,11 +1,13 @@
-<% if @post.persisted?
-     action = "/posts/#{@post.id}"
-else
-       action = "/posts"
- end %>
-<form action="<%= action %>" method="post">
-  <%= '<input type="hidden" name="_method" value="patch">'.html_safe if @post.persisted? %>
-  <label>Title<input for="text" name="post[title]" value="<%= @post.title %>"></label><br/>
-  <label>Body<textarea name="post[body]" rows="8" cols="40"><%= @post.body %></textarea></label><br/>
+<% if @post.errors.any? %>
+    <ul>
+      <% @post.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+          <% end %>
+    </ul>
+    <% end %>
+<%=form_for @post do |f| %>
+  <label>Title<%= f.text_field :title %></label><%= error_messages_on @post, :title %><br/>
+  <label>Body<%= f.text_area :body, rows: 8, cols: 40 %></label><%= error_messages_on @post, :body %><br/>
+  <%= render partial: 'category_picker'  %>
   <input type="submit" name="submit" value="Update!">
-</form>
+<% end %>

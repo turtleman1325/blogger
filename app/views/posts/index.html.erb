@@ -1,5 +1,9 @@
+<h1>Posts</h1>
+<table>
 <% @post.each do |post| %>
-<p><%= link_to post.title, "/posts/#{post.id}" %><%= button_to 'X', "/posts/#{post.id}", method: 'delete' %><p>
+<tr><td><p><%= link_to post.title, "/posts/#{post.id}" %></td>
+  <td><%= link_to image_tag('http://pngwebicons.com/upload/recycle_bin_PNG9115.png', height: '30px'), "/posts/#{post.id}", method: 'delete' %><p></td>
 
 <% end %>
-<%= link_to 'New Post', 'posts/new' %>
+</table>
+<%= link_to 'New Post', '/posts/new' %>
